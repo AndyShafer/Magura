@@ -1,0 +1,2 @@
+#define Magura_VERSION_MAJOR @Magura_VERSION_MAJOR@ 
+#define Magura_VERSION_MINOR @Magura_VERSION_MINOR@ 
