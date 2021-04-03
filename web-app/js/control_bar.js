@@ -11,14 +11,34 @@ class ControlBar extends React.Component {
     });
 
     _defineProperty(this, "loadClicked", () => {
-      var img = new Image();
-      img.src = "web-app/test-image.jpeg";
+      document.getElementById("loadInput").click();
+      /*
       var t = this;
+      img.onload = function() {
+      	t.props.resetDisplay(img.width, img.height);
+      	t.getCtx().drawImage(img, 0, 0);
+      }
+      */
+    });
+
+    _defineProperty(this, "loadImage", () => {
+      var img = new Image();
+      var t = this;
+      var file = document.getElementById("loadInput").files[0];
+      var reader = new FileReader();
+
+      reader.onloadend = function () {
+        img.src = reader.result;
+      };
 
       img.onload = function () {
         t.props.resetDisplay(img.width, img.height);
         t.getCtx().drawImage(img, 0, 0);
       };
+
+      if (file) {
+        reader.readAsDataURL(file);
+      }
     });
 
     this.state = {};
@@ -46,7 +66,15 @@ class ControlBar extends React.Component {
       onClick: this.loadClicked,
       className: "btn btn-default btn-secondary",
       title: "Load"
-    }, "Load"))));
+    }, "Load"))), /*#__PURE__*/React.createElement("input", {
+      type: "file",
+      id: "loadInput",
+      style: {
+        display: "none"
+      },
+      accept: ".jpg, .jpeg, .png",
+      onChange: this.loadImage
+    }));
   }
 
 }
