@@ -33,3 +33,5 @@
 
 # CMake Build System
 build/*
+
+web-app/node_modules/*
