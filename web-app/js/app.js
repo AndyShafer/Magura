@@ -10,7 +10,11 @@ class App extends React.Component {
   render() {
     return /*#__PURE__*/React.createElement("div", {
       className: "container"
-    }, /*#__PURE__*/React.createElement("span", null, "Hello"));
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "row"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "col"
+    }, /*#__PURE__*/React.createElement(Display, null))));
   }
 
 }
