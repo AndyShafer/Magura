@@ -7,18 +7,11 @@ class ControlBar extends React.Component {
     super(props);
 
     _defineProperty(this, "newClicked", () => {
-      this.props.resetDisplay(600, 600);
+      this.openModal("newModal");
     });
 
     _defineProperty(this, "loadClicked", () => {
       document.getElementById("loadInput").click();
-      /*
-      var t = this;
-      img.onload = function() {
-      	t.props.resetDisplay(img.width, img.height);
-      	t.getCtx().drawImage(img, 0, 0);
-      }
-      */
     });
 
     _defineProperty(this, "loadImage", () => {
@@ -41,7 +34,34 @@ class ControlBar extends React.Component {
       }
     });
 
-    this.state = {};
+    _defineProperty(this, "handleChange", ev => {
+      this.setState({
+        [ev.target.name]: ev.target.value
+      });
+    });
+
+    _defineProperty(this, "handleSubmit", ev => {
+      this.props.resetDisplay(this.state.newModalWidth, this.state.newModalHeight);
+      this.closeModal("newModal");
+    });
+
+    _defineProperty(this, "openModal", m => {
+      this.setState({
+        [m]: true
+      });
+    });
+
+    _defineProperty(this, "closeModal", m => {
+      this.setState({
+        [m]: false
+      });
+    });
+
+    this.state = {
+      newModal: false,
+      newModalWidth: 600,
+      newModalHeight: 400
+    };
   }
 
   getCtx() {
@@ -66,7 +86,36 @@ class ControlBar extends React.Component {
       onClick: this.loadClicked,
       className: "btn btn-default btn-secondary",
       title: "Load"
-    }, "Load"))), /*#__PURE__*/React.createElement("input", {
+    }, "Load"))), /*#__PURE__*/React.createElement(Modal, {
+      show: this.state.newModal,
+      handleClose: e => this.closeModal("newModal")
+    }, /*#__PURE__*/React.createElement("h2", null, "New Image"), /*#__PURE__*/React.createElement("div", {
+      className: "form-group"
+    }, /*#__PURE__*/React.createElement("label", null, "Width:"), /*#__PURE__*/React.createElement("input", {
+      type: "number",
+      min: "1",
+      step: "1",
+      value: this.state.newModalWidth,
+      name: "newModalWidth",
+      onChange: this.handleChange,
+      className: "form-control"
+    })), /*#__PURE__*/React.createElement("div", {
+      className: "form-group"
+    }, /*#__PURE__*/React.createElement("label", null, "Height:"), /*#__PURE__*/React.createElement("input", {
+      type: "number",
+      min: "1",
+      step: "1",
+      value: this.state.newModalHeight,
+      name: "newModalHeight",
+      onChange: this.handleChange,
+      className: "form-control"
+    })), /*#__PURE__*/React.createElement("div", {
+      className: "form-group"
+    }, /*#__PURE__*/React.createElement("button", {
+      type: "button",
+      onClick: this.handleSubmit,
+      title: "SubmitNew"
+    }, "Submit"))), /*#__PURE__*/React.createElement("input", {
       type: "file",
       id: "loadInput",
       style: {
