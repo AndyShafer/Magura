@@ -14,6 +14,13 @@ class ControlBar extends React.Component {
       document.getElementById("loadInput").click();
     });
 
+    _defineProperty(this, "downloadClicked", () => {
+      var a = document.createElement("a");
+      a.href = document.getElementById("display").toDataURL();
+      a.download = "output.png";
+      a.click();
+    });
+
     _defineProperty(this, "loadImage", () => {
       var img = new Image();
       var t = this;
@@ -75,7 +82,7 @@ class ControlBar extends React.Component {
     }, /*#__PURE__*/React.createElement("div", {
       className: "row"
     }, /*#__PURE__*/React.createElement("div", {
-      className: "col-md-2"
+      className: "col-md-12"
     }, /*#__PURE__*/React.createElement("button", {
       type: "button",
       onClick: this.newClicked,
@@ -86,7 +93,12 @@ class ControlBar extends React.Component {
       onClick: this.loadClicked,
       className: "btn btn-default btn-secondary",
       title: "Load"
-    }, "Load"))), /*#__PURE__*/React.createElement(Modal, {
+    }, "Load"), /*#__PURE__*/React.createElement("button", {
+      type: "button",
+      onClick: this.downloadClicked,
+      className: "btn btn-default btn-secondary",
+      title: "Download"
+    }, "Download"))), /*#__PURE__*/React.createElement(Modal, {
       show: this.state.newModal,
       handleClose: e => this.closeModal("newModal")
     }, /*#__PURE__*/React.createElement("h2", null, "New Image"), /*#__PURE__*/React.createElement("div", {

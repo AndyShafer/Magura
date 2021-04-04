@@ -12,9 +12,9 @@ const Modal = ({
     className: "modal-dialog",
     role: "document"
   }, /*#__PURE__*/React.createElement("div", {
-    class: "modal-content"
+    className: "modal-content"
   }, /*#__PURE__*/React.createElement("div", {
-    class: "modal-body"
+    className: "modal-body"
   }, children, /*#__PURE__*/React.createElement("a", {
     className: "modal-close",
     onClick: handleClose

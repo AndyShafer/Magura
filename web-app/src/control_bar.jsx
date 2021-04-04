@@ -18,6 +18,13 @@ class ControlBar extends React.Component {
 		document.getElementById("loadInput").click();
 	}
 
+	downloadClicked = () => {
+		var a = document.createElement("a");
+		a.href = document.getElementById("display").toDataURL();
+		a.download = "output.png";
+		a.click();
+	}
+
 	loadImage = () => {
 		var img = new Image();
 		var t = this;
@@ -62,9 +69,10 @@ class ControlBar extends React.Component {
 		return (
 			<div id="control-bar" className="container mb-2 mt-2">
 				<div className="row">
-					<div className="col-md-2">
+					<div className="col-md-12">
 						<button type="button" onClick={ this.newClicked } className="btn btn-default btn-secondary" title="New">New</button>
 						<button type="button" onClick={ this.loadClicked } className="btn btn-default btn-secondary" title="Load">Load</button>
+						<button type="button" onClick={ this.downloadClicked } className="btn btn-default btn-secondary" title="Download">Download</button>
 					</div>
 				</div>
 				<Modal show={this.state.newModal} handleClose={ e => this.closeModal("newModal") }>
